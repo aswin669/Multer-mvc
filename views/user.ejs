@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid blue;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .form-container, .user-list {
+        background: #fff;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"], input[type="file"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #5cb85c;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #4cae4c;
+      }
+
+      .user-list {
+        width: 80%;
+        max-width: 1200px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+        border: 2px solid black; /* Black border for separation */
+      }
+
+      .card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .card img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .card p {
+        font-size: 40px;
+        font-weight: 400px;
+        margin: 0 0 10px;
+        text-transform: capitalize;
+        border: 1px solid black;
+      }
+
+      /* Flexbox styles for aligning images in a row */
+      .user-list ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .user-list li {
+        flex: 1 1 30%; /* Adjust percentage as needed */
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <form action="/add" enctype="multipart/form-data" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" />
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="file" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="user-list">
+      <ul>
+        <% users.forEach(user => { %>
+        <li class="card">
+          <p><%= user.name %></p>
+          <img
+            src="/uploads/<%= user.file %>"
+            alt="<%= user.name %>"
+            width="300"
+            height="250"
+          />
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>
