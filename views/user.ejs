@@ -69,7 +69,8 @@
         margin-bottom: 20px;
         padding: 20px;
         text-align: center;
-        border: 2px solid black; /* Black border for separation */
+        border: 2px solid black;
+        position: relative; /* To position the delete button */
       }
 
       .card img {
@@ -90,11 +91,43 @@
         font-size: 40px;
         font-weight: 400px;
         margin: 0 0 10px;
+        
         text-transform: capitalize;
-        border: 1px solid black;
+      }
+/* 
+      .delete-btn {
+        position: absolute;
+        top: 190px;
+        right: 100px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
       }
 
-      /* Flexbox styles for aligning images in a row */
+      .delete-btn:hover {
+        background-color: darkred;
+      } */
+      .delete-btn {
+        position: absolute;
+        bottom: 10px; /* Align bottom */
+        left: 50%; /* Align center horizontally */
+        transform: translateX(-50%); /* Adjust position */
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .delete-btn:hover {
+        background-color: darkred;
+      }
       .user-list ul {
         display: flex;
         flex-wrap: wrap;
@@ -104,7 +137,7 @@
       }
 
       .user-list li {
-        flex: 1 1 30%; /* Adjust percentage as needed */
+        flex: 1 1 30%;
         margin: 10px;
       }
     </style>
@@ -131,6 +164,9 @@
             width="300"
             height="250"
           />
+          <form action="/delete/<%= user._id %>" method="post">
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
         </li>
         <% }) %>
       </ul>
